@@ -286,9 +286,9 @@ Accuracy over 30 epochs:
 #3 Accuracy: 98.25% (27.27s)
 ...
 
-#28 Accuracy: 99.14% (540.11s)
-#29 Accuracy: 99.21% (546.38s)
-#30 Accuracy: 99.16% (538.87s)
+#28 Accuracy: 99.07% (30.84s)
+#29 Accuracy: 99.09% (30.21s)
+#30 Accuracy: 99.12% (29.52s)
 ```
 ### Fashion MNIST 2D Convolution Demo w/Weighted Clauses
 

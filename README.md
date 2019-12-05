@@ -336,6 +336,9 @@ Accuracy over 30 epochs:
 #3 Accuracy: 87.34% (27.95s)
 ...
 
+#28 Accuracy: 89.66% (29.88s)
+#29 Accuracy: 89.89% (31.53s)
+#30 Accuracy: 89.95% (28.80s)
 ```
 
 ### IMDb Text Categorization Demo

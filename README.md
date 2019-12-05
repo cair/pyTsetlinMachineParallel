@@ -196,9 +196,9 @@ Accuracy over 250 epochs:
 #3 Accuracy: 96.38% Training: 3.15s Testing: 1.54s
 ...
 
-#248 Accuracy: 98.06% Training: 7.77s Testing: 3.09s
-#249 Accuracy: 97.98% Training: 7.74s Testing: 3.10s
-#250 Accuracy: 98.07% Training: 7.92s Testing: 3.12s
+#248 Accuracy: 98.28% Training: 2.49s Testing: 1.51s
+#249 Accuracy: 98.31% Training: 2.23s Testing: 1.46s
+#250 Accuracy: 98.27% Training: 2.39s Testing: 1.47s
 ```
 ### MNIST Demo w/Weighted Clauses
 

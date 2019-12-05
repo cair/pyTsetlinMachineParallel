@@ -9,7 +9,7 @@ Multi-threaded implementation of the Tsetlin Machine (https://arxiv.org/abs/1804
 ## Installation
 
 ```bash
-pip install pyTsetlinMachine
+pip install pyTsetlinMachineMT
 ```
 
 ## Tutorials
@@ -23,7 +23,7 @@ pip install pyTsetlinMachine
 #### Code: NoisyXORDemo.py
 
 ```python
-from pyTsetlinMachine.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
 import numpy as np 
 
 train_data = np.loadtxt("NoisyXORTrainingData.txt")
@@ -64,7 +64,7 @@ Prediction: x1 = 1, x2 = 1, ... -> y = 0
 #### Code: 2DNoisyXORDemo.py
 
 ```python
-from pyTsetlinMachine.tm import MultiClassConvolutionalTsetlinMachine2D
+from pyTsetlinMachineMT.tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np 
 
 train_data = np.loadtxt("2DNoisyXORTrainingData.txt")
@@ -113,8 +113,8 @@ Prediction: 1
 #### Code: BreastCancerDemo.py
 
 ```python
-from pyTsetlinMachine.tm import MultiClassTsetlinMachine
-from pyTsetlinMachine.tools import Binarizer
+from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineMT.tools import Binarizer
 import numpy as np
 
 from sklearn import datasets
@@ -158,7 +158,7 @@ Mean accuracy over 100 runs:
 #### Code: MNISTDemo.py
 
 ```python
-from pyTsetlinMachine.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
 import numpy as np
 from time import time
 
@@ -205,7 +205,7 @@ Accuracy over 250 epochs:
 #### Code: MNISTDemoWeightedClauses.py
 
 ```python
-from pyTsetlinMachine.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
 import numpy as np
 from time import time
 
@@ -253,7 +253,7 @@ Accuracy over 60 epochs:
 #### Code: MNISTDemo2DConvolutionWeightedClauses.py
 
 ```python
-from pyTsetlinMachine.tm import MultiClassConvolutionalTsetlinMachine2D
+from pyTsetlinMachineMT.tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np
 from time import time
 
@@ -298,7 +298,7 @@ Accuracy over 30 epochs:
 #### Code: FashionMNISTDemo2DConvolutionWeightedClauses.py
 
 ```python
-from pyTsetlinMachine.tm import MultiClassConvolutionalTsetlinMachine2D
+from pyTsetlinMachineMT.tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np
 from time import time
 import cv2
@@ -354,7 +354,7 @@ import keras
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import chi2
 from keras.datasets import imdb
-from pyTsetlinMachine.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
 from time import time
 
 MAX_NGRAM = 2
@@ -506,8 +506,8 @@ Accuracy over 50 epochs:
 #### Code: RegressionDemo.py
 
 ```python
-from pyTsetlinMachine.tm import RegressionTsetlinMachine
-from pyTsetlinMachine.tools import Binarizer
+from pyTsetlinMachineMT.tm import RegressionTsetlinMachine
+from pyTsetlinMachineMT.tools import Binarizer
 import numpy as np
 from time import time
 

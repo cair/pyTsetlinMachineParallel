@@ -562,6 +562,7 @@ RMSD over 25 runs:
 
 - Python 3.7.x, https://www.python.org/downloads/
 - Numpy, http://www.numpy.org/
+- OpenMP 5.0, https://www.openmp.org/
 - Ubuntu or macOS
 
 ## Citation

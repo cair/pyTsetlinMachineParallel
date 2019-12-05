@@ -238,9 +238,9 @@ python3 ./MNISTDemoWeightedClauses.py
 
 Accuracy over 60 epochs:
 
-#1 Accuracy: 93.65% Training: 60.98s Testing: 3.98s
-#2 Accuracy: 95.33% Training: 26.84s Testing: 3.87s
-#3 Accuracy: 96.08% Training: 22.41s Testing: 3.95s
+#1 Accuracy: 93.85% Training: 5.78s Testing: 1.75s
+#2 Accuracy: 95.48% Training: 3.74s Testing: 1.80s
+#3 Accuracy: 96.01% Training: 3.29s Testing: 1.71s
 ...
 
 #58 Accuracy: 98.14% Training: 8.54s Testing: 4.17s

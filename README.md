@@ -218,8 +218,8 @@ X_test = np.where(X_test.reshape((X_test.shape[0], 28*28)) > 75, 1, 0)
 
 tm = MultiClassTsetlinMachine(2000, 50*100, 10.0, weighted_clauses=True)
 
-print("\nAccuracy over 60 epochs:\n")
-for i in range(60):
+print("\nAccuracy over 100 epochs:\n")
+for i in range(100):
         start_training = time()
         tm.fit(X_train, Y_train, epochs=1, incremental=True)
         stop_training = time()
@@ -236,16 +236,13 @@ for i in range(60):
 ```bash
 python3 ./MNISTDemoWeightedClauses.py
 
-Accuracy over 60 epochs:
+Accuracy over 100 epochs:
 
 #1 Accuracy: 93.85% Training: 5.78s Testing: 1.75s
 #2 Accuracy: 95.48% Training: 3.74s Testing: 1.80s
 #3 Accuracy: 96.01% Training: 3.29s Testing: 1.71s
 ...
 
-#58 Accuracy: 98.14% Training: 8.54s Testing: 4.17s
-#59 Accuracy: 98.08% Training: 8.49s Testing: 4.22s
-#60 Accuracy: 98.19% Training: 8.80s Testing: 4.15s
 ```
 
 ### MNIST 2D Convolution Demo w/Weighted Clauses
@@ -284,9 +281,9 @@ python3 ./MNISTDemo2DConvolutionWeightedClauses.py
 
 Accuracy over 30 epochs:
 
-#1 Accuracy: 97.53% (403.06s)
-#2 Accuracy: 98.07% (421.25s)
-#3 Accuracy: 98.36% (430.48s)
+#1 Accuracy: 97.78% (26.13s)
+#2 Accuracy: 98.05% (26.81s)
+#3 Accuracy: 98.25% (27.27s)
 ...
 
 #28 Accuracy: 99.14% (540.11s)

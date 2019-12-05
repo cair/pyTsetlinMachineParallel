@@ -336,9 +336,6 @@ Accuracy over 30 epochs:
 #3 Accuracy: 87.34% (27.95s)
 ...
 
-#28 Accuracy: 90.14% (759.22s)
-#29 Accuracy: 90.39% (564.35s)
-#30 Accuracy: 90.06% (560.08s)
 ```
 
 ### IMDb Text Categorization Demo
@@ -488,14 +485,6 @@ Selecting features...
 
 Accuracy over 50 epochs:
 
-#1 Accuracy: 86.84% Training: 947.15s Testing: 12.39s
-#2 Accuracy: 87.62% Training: 709.67s Testing: 11.34s
-#3 Accuracy: 88.05% Training: 631.41s Testing: 13.11s
-...
-
-#48 Accuracy: 89.56% Training: 357.80s Testing: 9.59s
-#49 Accuracy: 89.50% Training: 354.74s Testing: 9.58s
-#50 Accuracy: 89.45% Training: 371.62s Testing: 9.67s
 ```
 
 ### Regression Demo
@@ -541,12 +530,6 @@ python3 ./RegressionDemo.py
 
 RMSD over 25 runs:
 
-#1 RMSD: 0.62 +/- 0.00 (13.17s)
-#2 RMSD: 0.61 +/- 0.01 (13.19s)
-...
-
-#24 RMSD: 0.61 +/- 0.00 (13.65s)
-#25 RMSD: 0.61 +/- 0.00 (13.73s)
 ```
 
 ## Further Work

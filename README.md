@@ -331,9 +331,9 @@ python3 ./FashionMNISTDemo2DConvolutionWeightedClauses.py
 
 Accuracy over 30 epochs:
 
-#1 Accuracy: 85.25% (615.68s)
-#2 Accuracy: 86.60% (615.83s)
-#3 Accuracy: 87.56% (607.37s)
+#1 Accuracy: 84.85% (27.74s)
+#2 Accuracy: 86.86% (28.08s)
+#3 Accuracy: 87.34% (27.95s)
 ...
 
 #28 Accuracy: 90.14% (759.22s)

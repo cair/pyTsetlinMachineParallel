@@ -191,9 +191,9 @@ python3 ./MNISTDemo.py
 
 Accuracy over 250 epochs:
 
-#1 Accuracy: 94.63% Training: 42.75s Testing: 3.06s
-#2 Accuracy: 95.52% Training: 23.05s Testing: 3.12s
-#3 Accuracy: 95.97% Training: 20.13s Testing: 3.07s
+#1 Accuracy: 94.99% Training: 4.59s Testing: 1.66s
+#2 Accuracy: 95.95% Training: 3.56s Testing: 1.73s
+#3 Accuracy: 96.38% Training: 3.15s Testing: 1.54s
 ...
 
 #248 Accuracy: 98.06% Training: 7.77s Testing: 3.09s

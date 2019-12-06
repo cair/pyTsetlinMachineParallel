@@ -316,10 +316,10 @@ for i in range(X_train.shape[0]):
 for i in range(X_test.shape[0]):
 	X_test[i,:] = cv2.adaptiveThreshold(X_test[i], 1, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
 
-tm = MultiClassConvolutionalTsetlinMachine2D(2000, 50*100, 5.0, (10, 10), weighted_clauses=True)
+tm = MultiClassConvolutionalTsetlinMachine2D(8000, 100*100, 10.0, (10, 10), weighted_clauses=True)
 
-print("\nAccuracy over 50 epochs:\n")
-for i in range(50):
+print("\nAccuracy over 15 epochs:\n")
+for i in range(15):
 	start = time()
 	tm.fit(X_train, Y_train, epochs=1, incremental=True)
 	stop = time()
@@ -334,16 +334,16 @@ for i in range(50):
 ```bash
 python3 ./FashionMNISTDemo2DConvolutionWeightedClauses.py 
 
-Accuracy over 50 epochs:
+Accuracy over 15 epochs:
 
-#1 Accuracy: 84.20% (27.33s)
-#2 Accuracy: 86.54% (28.59s)
-#3 Accuracy: 87.52% (29.18s)
+#1 Accuracy: 84.98% (72.75s)
+#2 Accuracy: 86.76% (67.73s)
+#3 Accuracy: 87.74% (69.19s)
 ...
 
-#48 Accuracy: 90.11% (26.69s)
-#49 Accuracy: 89.99% (27.34s)
-#50 Accuracy: 90.11% (29.19s)
+#13 Accuracy: 90.36% (60.49s)
+#14 Accuracy: 90.37% (64.64s)
+#15 Accuracy: 90.29% (65.93s)
 ```
 
 ### IMDb Text Categorization Demo

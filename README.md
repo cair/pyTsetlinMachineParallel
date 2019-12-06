@@ -10,6 +10,8 @@ Multi-threaded implementation of the Tsetlin Machine (https://arxiv.org/abs/1804
 
 ```bash
 pip install pyTsetlinMachineMT
+
+export OMP_NUM_THREADS=100
 ```
 
 ## Tutorials

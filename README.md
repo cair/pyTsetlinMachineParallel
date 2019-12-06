@@ -318,8 +318,8 @@ for i in range(X_test.shape[0]):
 
 tm = MultiClassConvolutionalTsetlinMachine2D(8000, 100*100, 10.0, (10, 10), weighted_clauses=True)
 
-print("\nAccuracy over 15 epochs:\n")
-for i in range(15):
+print("\nAccuracy over 20 epochs:\n")
+for i in range(20):
 	start = time()
 	tm.fit(X_train, Y_train, epochs=1, incremental=True)
 	stop = time()
@@ -334,16 +334,16 @@ for i in range(15):
 ```bash
 python3 ./FashionMNISTDemo2DConvolutionWeightedClauses.py 
 
-Accuracy over 15 epochs:
+Accuracy over 20 epochs:
 
 #1 Accuracy: 84.98% (72.75s)
 #2 Accuracy: 86.76% (67.73s)
 #3 Accuracy: 87.74% (69.19s)
 ...
 
-#13 Accuracy: 90.36% (60.49s)
-#14 Accuracy: 90.37% (64.64s)
-#15 Accuracy: 90.29% (65.93s)
+#18 Accuracy: 90.50% (63.15s)
+#19 Accuracy: 90.59% (76.57s)
+#20 Accuracy: 90.77% (69.71s)
 ```
 
 ### IMDb Text Categorization Demo

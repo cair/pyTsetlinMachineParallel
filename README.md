@@ -98,7 +98,7 @@ print("\nPrediction: %d" % (ctm.predict(Xi)))
 ```bash
 python3 ./2DNoisyXORDemo.py 
 
-Accuracy: 99.97%
+Accuracy: 99.71%
 
 Input Image:
 

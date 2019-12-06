@@ -1,5 +1,5 @@
-from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
-from pyTsetlinMachineMT.tools import Binarizer
+from pyTsetlinMachineParallel.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineParallel.tools import Binarizer
 import numpy as np
 
 from sklearn import datasets

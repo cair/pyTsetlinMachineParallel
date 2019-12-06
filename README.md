@@ -331,16 +331,16 @@ for i in range(30):
 ```bash
 python3 ./FashionMNISTDemo2DConvolutionWeightedClauses.py 
 
-Accuracy over 30 epochs:
+Accuracy over 50 epochs:
 
 #1 Accuracy: 84.20% (27.33s)
 #2 Accuracy: 86.54% (28.59s)
 #3 Accuracy: 87.52% (29.18s)
 ...
 
-#28 Accuracy: 89.88% (29.77s)
-#29 Accuracy: 89.92% (29.21s)
-#30 Accuracy: 90.13% (28.44s)
+#48 Accuracy: 90.11% (26.69s)
+#49 Accuracy: 89.99% (27.34s)
+#50 Accuracy: 90.11% (29.19s)
 ```
 
 ### IMDb Text Categorization Demo

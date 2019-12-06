@@ -240,11 +240,14 @@ python3 ./MNISTDemoWeightedClauses.py
 
 Accuracy over 100 epochs:
 
-#1 Accuracy: 93.85% Training: 5.78s Testing: 1.75s
-#2 Accuracy: 95.48% Training: 3.74s Testing: 1.80s
-#3 Accuracy: 96.01% Training: 3.29s Testing: 1.71s
+#1 Accuracy: 93.79% Training: 6.68s Testing: 2.22s
+#2 Accuracy: 95.57% Training: 4.55s Testing: 2.09s
+#3 Accuracy: 95.99% Training: 4.07s Testing: 2.23s
 ...
 
+#48 Accuracy: 98.03% Training: 3.23s Testing: 2.29s
+#49 Accuracy: 98.08% Training: 3.17s Testing: 2.17s
+#50 Accuracy: 98.01% Training: 3.08s Testing: 2.10s
 ```
 
 ### MNIST 2D Convolution Demo w/Weighted Clauses

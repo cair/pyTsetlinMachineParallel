@@ -9,7 +9,7 @@ Multi-threaded implementation of the Tsetlin Machine (https://arxiv.org/abs/1804
 ## Installation
 
 ```bash
-pip install pyTsetlinMachineMT
+pip install pyTsetlinMachineParallel
 
 export OMP_NUM_THREADS=100
 ```
@@ -25,7 +25,7 @@ export OMP_NUM_THREADS=100
 #### Code: NoisyXORDemo.py
 
 ```python
-from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineParallel.tm import MultiClassTsetlinMachine
 import numpy as np 
 
 train_data = np.loadtxt("NoisyXORTrainingData.txt")
@@ -66,7 +66,7 @@ Prediction: x1 = 1, x2 = 1, ... -> y = 0
 #### Code: 2DNoisyXORDemo.py
 
 ```python
-from pyTsetlinMachineMT.tm import MultiClassConvolutionalTsetlinMachine2D
+from pyTsetlinMachineParallel.tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np 
 
 train_data = np.loadtxt("2DNoisyXORTrainingData.txt")
@@ -115,8 +115,8 @@ Prediction: 1
 #### Code: BreastCancerDemo.py
 
 ```python
-from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
-from pyTsetlinMachineMT.tools import Binarizer
+from pyTsetlinMachineParallel.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineParallel.tools import Binarizer
 import numpy as np
 
 from sklearn import datasets
@@ -160,7 +160,7 @@ Mean accuracy over 100 runs:
 #### Code: MNISTDemo.py
 
 ```python
-from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineParallel.tm import MultiClassTsetlinMachine
 import numpy as np
 from time import time
 
@@ -207,7 +207,7 @@ Accuracy over 250 epochs:
 #### Code: MNISTDemoWeightedClauses.py
 
 ```python
-from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineParallel.tm import MultiClassTsetlinMachine
 import numpy as np
 from time import time
 
@@ -255,7 +255,7 @@ Accuracy over 100 epochs:
 #### Code: MNISTDemo2DConvolutionWeightedClauses.py
 
 ```python
-from pyTsetlinMachineMT.tm import MultiClassConvolutionalTsetlinMachine2D
+from pyTsetlinMachineParallel.tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np
 from time import time
 
@@ -300,7 +300,7 @@ Accuracy over 30 epochs:
 #### Code: FashionMNISTDemo2DConvolutionWeightedClauses.py
 
 ```python
-from pyTsetlinMachineMT.tm import MultiClassConvolutionalTsetlinMachine2D
+from pyTsetlinMachineParallel.tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np
 from time import time
 import cv2
@@ -356,7 +356,7 @@ import keras
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import chi2
 from keras.datasets import imdb
-from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineParallel.tm import MultiClassTsetlinMachine
 from time import time
 
 MAX_NGRAM = 2
@@ -504,8 +504,8 @@ Accuracy over 50 epochs:
 #### Code: RegressionDemo.py
 
 ```python
-from pyTsetlinMachineMT.tm import RegressionTsetlinMachine
-from pyTsetlinMachineMT.tools import Binarizer
+from pyTsetlinMachineParallel.tm import RegressionTsetlinMachine
+from pyTsetlinMachineParallel.tools import Binarizer
 import numpy as np
 from time import time
 

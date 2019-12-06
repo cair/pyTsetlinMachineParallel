@@ -1,4 +1,4 @@
-from pyTsetlinMachineMT.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineParallel.tm import MultiClassTsetlinMachine
 import numpy as np 
 
 train_data = np.loadtxt("NoisyXORTrainingData.txt")

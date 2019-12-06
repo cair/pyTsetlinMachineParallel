@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 
-from pyTsetlinMachineMT.tm import MultiClassConvolutionalTsetlinMachine2D
+from pyTsetlinMachineParallel.tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np 
 
 train_data = np.loadtxt("2DNoisyXORTrainingData.txt")

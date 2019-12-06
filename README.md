@@ -331,14 +331,14 @@ python3 ./FashionMNISTDemo2DConvolutionWeightedClauses.py
 
 Accuracy over 30 epochs:
 
-#1 Accuracy: 84.85% (27.74s)
-#2 Accuracy: 86.86% (28.08s)
-#3 Accuracy: 87.34% (27.95s)
+#1 Accuracy: 84.20% (27.33s)
+#2 Accuracy: 86.54% (28.59s)
+#3 Accuracy: 87.52% (29.18s)
 ...
 
-#28 Accuracy: 89.66% (29.88s)
-#29 Accuracy: 89.89% (31.53s)
-#30 Accuracy: 89.95% (28.80s)
+#28 Accuracy: 89.88% (29.77s)
+#29 Accuracy: 89.92% (29.21s)
+#30 Accuracy: 90.13% (28.44s)
 ```
 
 ### IMDb Text Categorization Demo

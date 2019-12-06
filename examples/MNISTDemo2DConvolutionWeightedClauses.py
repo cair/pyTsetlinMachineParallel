@@ -1,4 +1,4 @@
-from pyTsetlinMachineMT.tm import MultiClassConvolutionalTsetlinMachine2D
+from pyTsetlinMachineParallel.tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np
 from time import time
 

@@ -1,5 +1,5 @@
-from pyTsetlinMachineMT.tm import RegressionTsetlinMachine
-from pyTsetlinMachineMT.tools import Binarizer
+from pyTsetlinMachineParallel.tm import RegressionTsetlinMachine
+from pyTsetlinMachineParallel.tools import Binarizer
 import numpy as np
 from time import time
 

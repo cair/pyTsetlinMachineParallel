@@ -458,10 +458,10 @@ selected_features = SKB.get_support(indices=True)
 X_train = SKB.transform(X_train)
 X_test = SKB.transform(X_test)
 
-tm = MultiClassTsetlinMachine(10000, 80, 27.0)
+tm = MultiClassTsetlinMachine(10000, 80*100, 10.0, weighted_clauses=True)
 
-print("\nAccuracy over 100 epochs:\n")
-for i in range(100):
+print("\nAccuracy over 50 epochs:\n")
+for i in range(50):
 	start_training = time()
 	tm.fit(X_train, Y_train, epochs=1, incremental=True)
 	stop_training = time()

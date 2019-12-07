@@ -193,14 +193,14 @@ python3 ./MNISTDemo.py
 
 Accuracy over 250 epochs:
 
-#1 Accuracy: 94.99% Training: 4.59s Testing: 1.66s
-#2 Accuracy: 95.95% Training: 3.56s Testing: 1.73s
-#3 Accuracy: 96.38% Training: 3.15s Testing: 1.54s
+#1 Accuracy: 94.91% Training: 4.43s Testing: 1.02s
+#2 Accuracy: 96.06% Training: 3.66s Testing: 1.03s
+#3 Accuracy: 96.46% Training: 3.24s Testing: 1.07s
 ...
 
-#248 Accuracy: 98.28% Training: 2.49s Testing: 1.51s
-#249 Accuracy: 98.31% Training: 2.23s Testing: 1.46s
-#250 Accuracy: 98.27% Training: 2.39s Testing: 1.47s
+#248 Accuracy: 98.19% Training: 1.77s Testing: 1.06s
+#249 Accuracy: 98.19% Training: 1.90s Testing: 1.05s
+#250 Accuracy: 98.21% Training: 1.70s Testing: 1.06s
 ```
 ### MNIST Demo w/Weighted Clauses
 

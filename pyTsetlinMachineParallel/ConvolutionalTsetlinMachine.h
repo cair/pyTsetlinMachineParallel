@@ -25,6 +25,8 @@ https://arxiv.org/abs/1905.09688
 
 */
 
+#include <omp.h>
+
 #define PREDICT 1
 #define UPDATE 0
 

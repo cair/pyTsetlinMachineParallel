@@ -460,8 +460,8 @@ X_test = SKB.transform(X_test)
 
 tm = MultiClassTsetlinMachine(10000, 80*100, 10.0, weighted_clauses=True)
 
-print("\nAccuracy over 40 epochs:\n")
-for i in range(40):
+print("\nAccuracy over 30 epochs:\n")
+for i in range(30):
 	start_training = time()
 	tm.fit(X_train, Y_train, epochs=1, incremental=True)
 	stop_training = time()
@@ -482,16 +482,16 @@ Downloading dataset...
 Producing bit representation...
 Selecting features...
 
-Accuracy over 40 epochs:
+Accuracy over 30 epochs:
 
-#1 Accuracy: 86.33% Training: 78.96s Testing: 25.10s
-#2 Accuracy: 87.47% Training: 64.82s Testing: 23.57s
-#3 Accuracy: 87.98% Training: 62.77s Testing: 26.50s
+#1 Accuracy: 85.61% Training: 86.99s Testing: 21.02s
+#2 Accuracy: 86.92% Training: 76.44s Testing: 20.19s
+#3 Accuracy: 86.53% Training: 68.72s Testing: 22.44s
 ...
 
-#38 Accuracy: 88.91% Training: 46.15s Testing: 27.15s
-#39 Accuracy: 89.19% Training: 47.91s Testing: 29.55s
-#40 Accuracy: 89.14% Training: 40.14s Testing: 29.43s
+#28 Accuracy: 89.12% Training: 40.38s Testing: 27.77s
+#29 Accuracy: 89.04% Training: 42.99s Testing: 26.28s
+#30 Accuracy: 89.08% Training: 39.81s Testing: 26.38s
 ```
 
 ### Regression Demo

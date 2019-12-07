@@ -487,7 +487,7 @@ Accuracy over 50 epochs:
 #1 Accuracy: 82.55% Training: 67.52s Testing: 26.84s
 #2 Accuracy: 83.67% Training: 55.84s Testing: 25.43s
 #3 Accuracy: 84.99% Training: 51.16s Testing: 26.36s
-
+...
 ```
 
 ### Regression Demo
@@ -533,6 +533,7 @@ python3 ./RegressionDemo.py
 
 RMSD over 25 runs:
 
+...
 ```
 
 ## Further Work

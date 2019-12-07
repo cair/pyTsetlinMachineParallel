@@ -484,13 +484,11 @@ Selecting features...
 
 Accuracy over 100 epochs:
 
-#1 Accuracy: 84.68% Training: 169.52s Testing: 24.41s
-#2 Accuracy: 85.60% Training: 142.64s Testing: 27.87s
-#3 Accuracy: 86.20% Training: 120.18s Testing: 27.01s        
+#1 Accuracy: 86.33% Training: 78.96s Testing: 25.10s
+#2 Accuracy: 87.47% Training: 64.82s Testing: 23.57s
+#3 Accuracy: 87.98% Training: 62.77s Testing: 26.50s
 ...
-#98 Accuracy: 88.44% Training: 73.61s Testing: 30.94s
-#99 Accuracy: 89.34% Training: 68.14s Testing: 35.73s
-#100 Accuracy: 87.94% Training: 65.22s Testing: 30.79s
+
 ```
 
 ### Regression Demo

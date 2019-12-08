@@ -255,7 +255,7 @@ void mc_tm_transform(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X,  u
 		unsigned int pos = l*step_size;
 		
 		for (int i = 0; i < mc_tm->number_of_classes; i++) {	
-			tm_score(mc_tm->tsetlin_machines[i], &X[pos]);
+			tm_score(mc_tm_thread[thread_id]->tsetlin_machines[i], &X[pos]);
 
 			for (int j = 0; j < mc_tm->tsetlin_machines[i]->number_of_clauses; ++j) {
 				unsigned int transformed_feature = l*mc_tm->number_of_classes*mc_tm->tsetlin_machines[i]->number_of_clauses + i*mc_tm->tsetlin_machines[i]->number_of_clauses + j;
@@ -263,7 +263,7 @@ void mc_tm_transform(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X,  u
 				int clause_chunk = j / 32;
 				int clause_pos = j % 32;
 
-				int clause_output = (mc_tm->tsetlin_machines[i]->clause_output[clause_chunk] & (1 << clause_pos)) > 0;
+				int clause_output = (mc_tm_thread[thread_id]->tsetlin_machines[i]->clause_output[clause_chunk] & (1 << clause_pos)) > 0;
 	
 				if (clause_output && !invert) {
 					X_transformed[transformed_feature] = 1;

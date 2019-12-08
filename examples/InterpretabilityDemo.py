@@ -1,4 +1,4 @@
-from pyTsetlinMachine.tm import MultiClassTsetlinMachine
+from pyTsetlinMachineParallel.tm import MultiClassTsetlinMachine
 import numpy as np 
 
 number_of_features = 20

@@ -115,6 +115,8 @@ void mc_tm_predict(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int 
 
 		y[l] = max_class;
 	}
+
+	free(mc_tm_thread);
 	
 	return;
 }
@@ -180,7 +182,6 @@ void mc_tm_fit(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int *y, 
 	}
 
 	for (int i = 0; i < mc_tm->number_of_classes; i++) {
-		mc_tm->tsetlin_machines[i]->clause_lock = (omp_lock_t *)malloc(sizeof(omp_lock_t) * tm->number_of_clauses);
 		for (int j = 0; j < tm->number_of_clauses; ++j) {
 			omp_destroy_lock(&mc_tm->tsetlin_machines[i]->clause_lock[j]);
 		}

@@ -553,14 +553,41 @@ void tm_fit_regression(struct TsetlinMachine *tm, unsigned int *X, int *y, int n
 {
 	unsigned int step_size = tm->number_of_patches * tm->number_of_ta_chunks;
 
+	int max_threads = omp_get_max_threads();
+	struct TsetlinMachine **tm_thread = (void *)malloc(sizeof(struct TsetlinMachine *) * max_threads);
+
+	tm->clause_lock = (omp_lock_t *)malloc(sizeof(omp_lock_t) * tm->number_of_clauses);
+	for (int j = 0; j < tm->number_of_clauses; ++j) {
+		omp_init_lock(&tm->clause_lock[j]);
+	}
+	
+	for (int t = 0; t < max_threads; t++) {
+		tm_thread[t] = CreateTsetlinMachine(tm->number_of_clauses, tm->number_of_features, tm->number_of_patches, tm->number_of_ta_chunks, tm->number_of_state_bits, tm->T, tm->s, tm->s_range, tm->boost_true_positive_feedback, tm->weighted_clauses);
+		free(tm_thread[t]->ta_state);
+		tm_thread[t]->ta_state = tm->ta_state;
+		free(tm_thread[t]->clause_weights);
+		tm_thread[t]->clause_weights = tm->clause_weights;
+		tm_thread[t]->clause_lock = tm->clause_lock;
+	}
+
 	for (int epoch = 0; epoch < epochs; epoch++) {
 		// Add shuffling here...
-		unsigned int pos = 0;
-		for (int i = 0; i < number_of_examples; i++) {
-			tm_update_regression(tm, &X[pos], y[i]);
-			pos += step_size;
+
+		#pragma omp parallel for
+		for (int l = 0; l < number_of_examples; l++) {
+			int thread_id = omp_get_thread_num();
+			unsigned int pos = l*step_size;
+
+			tm_update_regression(tm_thread[thread_id], &X[pos], y[l]);
 		}
 	}
+
+	for (int j = 0; j < tm->number_of_clauses; ++j) {
+		omp_destroy_lock(&tm->clause_lock[j]);
+	}
+
+	free(tm->clause_lock);
+	free(tm_thread);
 }
 
 int tm_score_regression(struct TsetlinMachine *tm, unsigned int *Xi) {
@@ -585,13 +612,36 @@ void tm_predict_regression(struct TsetlinMachine *tm, unsigned int *X, int *y, i
 {
 	unsigned int step_size = tm->number_of_patches * tm->number_of_ta_chunks;
 
-	unsigned int pos = 0;
-	for (int l = 0; l < number_of_examples; l++) {
-		// Identify class with largest output
-		y[l] = tm_score_regression(tm, &X[pos]);
-		
-		pos += step_size;
+	int max_threads = omp_get_max_threads();
+	struct TsetlinMachine **tm_thread = (void *)malloc(sizeof(struct TsetlinMachine *) * max_threads);
+
+//	tm->clause_lock = (omp_lock_t *)malloc(sizeof(omp_lock_t) * tm->number_of_clauses);
+//	for (int j = 0; j < tm->number_of_clauses; ++j) {
+//		omp_init_lock(&tm->clause_lock[j]);
+//	}
+	
+	for (int t = 0; t < max_threads; t++) {
+		tm_thread[t] = CreateTsetlinMachine(tm->number_of_clauses, tm->number_of_features, tm->number_of_patches, tm->number_of_ta_chunks, tm->number_of_state_bits, tm->T, tm->s, tm->s_range, tm->boost_true_positive_feedback, tm->weighted_clauses);
+		free(tm_thread[t]->ta_state);
+		tm_thread[t]->ta_state = tm->ta_state;
+		free(tm_thread[t]->clause_weights);
+		tm_thread[t]->clause_weights = tm->clause_weights;
+//		tm_thread[t]->clause_lock = tm->clause_lock;
 	}
+
+	#pragma omp parallel for
+	for (int l = 0; l < number_of_examples; l++) {
+		int thread_id = omp_get_thread_num();
+		unsigned int pos = l*step_size;
+
+		y[l] = tm_score_regression(tm_thread[thread_id], &X[pos]);		
+	}
+
+	//for (int j = 0; j < tm->number_of_clauses; ++j) {
+	//	omp_destroy_lock(&tm->clause_lock[j]);
+	//}
+
+	free(tm_thread);
 	
 	return;
 }

@@ -235,15 +235,31 @@ void mc_tm_set_state(struct MultiClassTsetlinMachine *mc_tm, int class, unsigned
 void mc_tm_transform(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X,  unsigned int *X_transformed, int invert, int number_of_examples)
 {
 	unsigned int step_size = mc_tm->number_of_patches * mc_tm->number_of_ta_chunks;
-
-	unsigned int pos = 0;
-	unsigned long transformed_feature = 0;
+	
+	int max_threads = omp_get_max_threads();
+	struct MultiClassTsetlinMachine **mc_tm_thread = (void *)malloc(sizeof(struct MultiClassTsetlinMachine *) * max_threads);
+	struct TsetlinMachine *tm = mc_tm->tsetlin_machines[0];
+	for (int t = 0; t < max_threads; t++) {
+		mc_tm_thread[t] = CreateMultiClassTsetlinMachine(mc_tm->number_of_classes, tm->number_of_clauses, tm->number_of_features, tm->number_of_patches, tm->number_of_ta_chunks, tm->number_of_state_bits, tm->T, tm->s, tm->s_range, tm->boost_true_positive_feedback, tm->weighted_clauses);
+		for (int i = 0; i < mc_tm->number_of_classes; i++) {
+			free(mc_tm_thread[t]->tsetlin_machines[i]->ta_state);
+			mc_tm_thread[t]->tsetlin_machines[i]->ta_state = mc_tm->tsetlin_machines[i]->ta_state;
+			free(mc_tm_thread[t]->tsetlin_machines[i]->clause_weights);
+			mc_tm_thread[t]->tsetlin_machines[i]->clause_weights = mc_tm->tsetlin_machines[i]->clause_weights;
+		}	
+	}
+	
 	#pragma omp parallel for
 	for (int l = 0; l < number_of_examples; l++) {
+		int thread_id = omp_get_thread_num();
+		unsigned int pos = l*step_size;
+		
 		for (int i = 0; i < mc_tm->number_of_classes; i++) {	
 			tm_score(mc_tm->tsetlin_machines[i], &X[pos]);
 
 			for (int j = 0; j < mc_tm->tsetlin_machines[i]->number_of_clauses; ++j) {
+				unsigned int transformed_feature = l*mc_tm->number_of_classes*mc_tm->tsetlin_machines[i]->number_of_clauses + i*mc_tm->tsetlin_machines[i]->number_of_clauses + j;
+					
 				int clause_chunk = j / 32;
 				int clause_pos = j % 32;
 
@@ -256,11 +272,8 @@ void mc_tm_transform(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X,  u
 				} else {
 					X_transformed[transformed_feature] = 0;
 				}
-
-				transformed_feature++;
 			} 
 		}
-		pos += step_size;
 	}
 	
 	return;

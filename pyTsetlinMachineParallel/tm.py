@@ -125,7 +125,7 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		number_of_examples = X.shape[0]
 
 		if self.mc_ctm == None:
-			self.number_of_classes = np.unique(Y).size
+			self.number_of_classes = np.max(Y)
 			self.dim_x = X.shape[1]
 			self.dim_y = X.shape[2]
 
@@ -246,11 +246,9 @@ class MultiClassTsetlinMachine():
 	def fit(self, X, Y, epochs=100, incremental=False):
 		number_of_examples = X.shape[0]
 
-		self.number_of_classes = np.unique(Y).size
+		self.number_of_classes = np.max(Y)
 
 		if self.mc_tm == None:
-			self.number_of_classes = np.unique(Y).size
-
 			if self.append_negated:
 				self.number_of_features = X.shape[1]*2
 			else:
@@ -359,7 +357,6 @@ class RegressionTsetlinMachine():
 		self.min_y = np.min(Y)
 
 		if self.rtm == None:
-			self.number_of_classes = np.unique(Y).size
 			self.number_of_features = X.shape[1]*2
 			self.number_of_patches = 1
 			self.number_of_ta_chunks = int((self.number_of_features-1)/32 + 1)

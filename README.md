@@ -20,7 +20,7 @@ Documentation coming soon at https://pytsetlinmachineparallel.readthedocs.io/en/
 
 ## Tutorials
 
-* Convolutional Tsetlin Machine tutorial, https://github.com/cair/convolutional-tsetlin-machine
+Convolutional Tsetlin Machine tutorial, https://github.com/cair/convolutional-tsetlin-machine
 
 ## Examples
 

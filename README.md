@@ -14,6 +14,10 @@ pip install pyTsetlinMachineParallel
 export OMP_NUM_THREADS=10
 ```
 
+## Documentation
+
+Documentation coming soon at https://pytsetlinmachineparallel.readthedocs.io/en/latest/
+
 ## Tutorials
 
 * Convolutional Tsetlin Machine tutorial, https://github.com/cair/convolutional-tsetlin-machine

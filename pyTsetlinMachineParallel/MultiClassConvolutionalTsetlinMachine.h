@@ -48,13 +48,15 @@ void mc_tm_predict(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int 
 
 void mc_tm_fit(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int y[], int number_of_examples, int epochs);
 
-void mc_tm_get_state(struct MultiClassTsetlinMachine *mc_tm, int class, unsigned int *ta_state);
+void mc_tm_get_state(struct MultiClassTsetlinMachine *mc_tm, int class, unsigned int *clause_weights, unsigned int *ta_state);
 
-void mc_tm_set_state(struct MultiClassTsetlinMachine *mc_tm, int class, unsigned int *ta_state);
+void mc_tm_set_state(struct MultiClassTsetlinMachine *mc_tm, int class, unsigned int *clause_weights, unsigned int *ta_state);
 
 int mc_tm_ta_state(struct MultiClassTsetlinMachine *mc_tm, int class, int clause, int ta);
 
 int mc_tm_ta_action(struct MultiClassTsetlinMachine *mc_tm, int class, int clause, int ta);
+
+int mc_tm_clause_weight(struct MultiClassTsetlinMachine *mc_tm, int class, int clause);
 
 void mc_tm_transform(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X,  unsigned int *X_transformed, int invert, int number_of_examples);
 

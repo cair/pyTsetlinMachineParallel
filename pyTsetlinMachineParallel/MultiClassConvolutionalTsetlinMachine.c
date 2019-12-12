@@ -210,21 +210,28 @@ void mc_tm_clause_configuration(struct MultiClassTsetlinMachine *mc_tm, int clas
 	return;
 }
 
+int mc_tm_clause_weight(struct MultiClassTsetlinMachine *mc_tm, int class, int clause)
+{
+	return(mc_tm->tsetlin_machines[class]->clause_weights[clause]);
+}
+
 /*****************************************************/
 /*** Storing and Loading of Tsetlin Machine State ****/
 /*****************************************************/
 
-void mc_tm_get_state(struct MultiClassTsetlinMachine *mc_tm, int class, unsigned int *ta_state)
+void mc_tm_get_state(struct MultiClassTsetlinMachine *mc_tm, int class, unsigned int *clause_weights, unsigned int *ta_state)
 {
-	tm_get_state(mc_tm->tsetlin_machines[class], ta_state);
-	
+	tm_get_ta_state(mc_tm->tsetlin_machines[class], ta_state);
+	tm_get_clause_weights(mc_tm->tsetlin_machines[class], clause_weights);
+
 	return;
 }
 
-void mc_tm_set_state(struct MultiClassTsetlinMachine *mc_tm, int class, unsigned int *ta_state)
+void mc_tm_set_state(struct MultiClassTsetlinMachine *mc_tm, int class, unsigned int *clause_weights, unsigned int *ta_state)
 {
-	tm_set_state(mc_tm->tsetlin_machines[class], ta_state);
-	
+	tm_set_ta_state(mc_tm->tsetlin_machines[class], ta_state);
+	tm_set_clause_weights(mc_tm->tsetlin_machines[class], clause_weights);
+
 	return;
 }
 

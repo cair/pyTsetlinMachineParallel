@@ -596,6 +596,14 @@ void tm_fit_regression(struct TsetlinMachine *tm, unsigned int *X, int *y, int n
 		}
 	}
 
+	for (int t = 0; t < max_threads; t++) {
+		free(tm_thread[t]->clause_output);
+		free(tm_thread[t]->output_one_patches);
+		free(tm_thread[t]->feedback_to_la);
+		free(tm_thread[t]->feedback_to_clauses);
+		free(tm_thread[t]);
+	}
+
 	for (int j = 0; j < tm->number_of_clauses; ++j) {
 		omp_destroy_lock(&tm->clause_lock[j]);
 	}
@@ -628,11 +636,6 @@ void tm_predict_regression(struct TsetlinMachine *tm, unsigned int *X, int *y, i
 
 	int max_threads = omp_get_max_threads();
 	struct TsetlinMachine **tm_thread = (void *)malloc(sizeof(struct TsetlinMachine *) * max_threads);
-
-//	tm->clause_lock = (omp_lock_t *)malloc(sizeof(omp_lock_t) * tm->number_of_clauses);
-//	for (int j = 0; j < tm->number_of_clauses; ++j) {
-//		omp_init_lock(&tm->clause_lock[j]);
-//	}
 	
 	for (int t = 0; t < max_threads; t++) {
 		tm_thread[t] = CreateTsetlinMachine(tm->number_of_clauses, tm->number_of_features, tm->number_of_patches, tm->number_of_ta_chunks, tm->number_of_state_bits, tm->T, tm->s, tm->s_range, tm->boost_true_positive_feedback, tm->weighted_clauses);
@@ -640,7 +643,6 @@ void tm_predict_regression(struct TsetlinMachine *tm, unsigned int *X, int *y, i
 		tm_thread[t]->ta_state = tm->ta_state;
 		free(tm_thread[t]->clause_weights);
 		tm_thread[t]->clause_weights = tm->clause_weights;
-//		tm_thread[t]->clause_lock = tm->clause_lock;
 	}
 
 	#pragma omp parallel for
@@ -651,9 +653,13 @@ void tm_predict_regression(struct TsetlinMachine *tm, unsigned int *X, int *y, i
 		y[l] = tm_score_regression(tm_thread[thread_id], &X[pos]);		
 	}
 
-	//for (int j = 0; j < tm->number_of_clauses; ++j) {
-	//	omp_destroy_lock(&tm->clause_lock[j]);
-	//}
+	for (int t = 0; t < max_threads; t++) {
+		free(tm_thread[t]->clause_output);
+		free(tm_thread[t]->output_one_patches);
+		free(tm_thread[t]->feedback_to_la);
+		free(tm_thread[t]->feedback_to_clauses);
+		free(tm_thread[t]);
+	}
 
 	free(tm_thread);
 	

@@ -116,6 +116,19 @@ void mc_tm_predict(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int 
 		y[l] = max_class;
 	}
 
+	for (int t = 0; t < max_threads; t++) {
+		for (int i = 0; i < mc_tm_thread[t]->number_of_classes; i++) {	
+
+			struct TsetlinMachine *tm_thread = mc_tm_thread[t]->tsetlin_machines[i];
+
+			free(tm_thread->clause_output);
+			free(tm_thread->output_one_patches);
+			free(tm_thread->feedback_to_la);
+			free(tm_thread->feedback_to_clauses);
+			free(tm_thread);
+		}
+	}
+
 	free(mc_tm_thread);
 	
 	return;
@@ -184,6 +197,19 @@ void mc_tm_fit(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int *y, 
 	for (int i = 0; i < mc_tm->number_of_classes; i++) {
 		for (int j = 0; j < tm->number_of_clauses; ++j) {
 			omp_destroy_lock(&mc_tm->tsetlin_machines[i]->clause_lock[j]);
+		}
+	}
+
+	for (int t = 0; t < max_threads; t++) {
+		for (int i = 0; i < mc_tm_thread[t]->number_of_classes; i++) {	
+
+			struct TsetlinMachine *tm_thread = mc_tm_thread[t]->tsetlin_machines[i];
+
+			free(tm_thread->clause_output);
+			free(tm_thread->output_one_patches);
+			free(tm_thread->feedback_to_la);
+			free(tm_thread->feedback_to_clauses);
+			free(tm_thread);
 		}
 	}
 

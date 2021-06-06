@@ -1,5 +1,5 @@
 # pyTsetlinMachineParallel
-![License](https://img.shields.io/github/license/microsoft/interpret.svg?style=flat-square) ![Python Version](https://img.shields.io/pypi/pyversions/interpret.svg?style=flat-square)![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)
+![License](https://img.shields.io/github/license/microsoft/interpret.svg?style=flat-square) ![Python Version](https://img.shields.io/pypi/pyversions/interpret.svg?style=flat-square) ![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)
 
 Multi-threaded implementation of the Tsetlin Machine (https://arxiv.org/abs/1804.01508), Convolutional Tsetlin Machine (https://arxiv.org/abs/1905.09688), Regression Tsetlin Machine (https://arxiv.org/abs/1905.04206, https://royalsocietypublishing.org/doi/full/10.1098/rsta.2019.0165, https://link.springer.com/chapter/10.1007/978-3-030-30244-3_23), and Weighted Tsetlin Machines (https://arxiv.org/abs/1911.12607, https://ieeexplore.ieee.org/document/9316190, https://arxiv.org/abs/2002.01245), with support for continuous features (https://arxiv.org/abs/1905.04199, https://link.springer.com/chapter/10.1007%2F978-3-030-22999-3_49) and multigranular clauses (https://arxiv.org/abs/1909.07310, https://link.springer.com/chapter/10.1007/978-3-030-34885-4_11).
 

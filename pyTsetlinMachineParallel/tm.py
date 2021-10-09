@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Ole-Christoffer Granmo
+# Copyright (c) 2021 Ole-Christoffer Granmo
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -116,6 +116,19 @@ class MultiClassConvolutionalTsetlinMachine2D():
 			self.s_range = s_range
 		else:
 			self.s_range = s
+
+	def __getstate__(self):
+		state = self.__dict__.copy()
+		state['mc_ctm_state'] = self.get_state()
+		del state['mc_ctm']
+		if 'encoded_X' in state:
+			del state['encoded_X']
+		return state
+
+	def __setstate__(self, state):
+		self.__dict__.update(state)
+		self.mc_ctm = _lib.CreateMultiClassTsetlinMachine(self.number_of_classes, self.number_of_clauses, self.number_of_features, self.number_of_patches, self.number_of_ta_chunks, self.number_of_state_bits, self.T, self.s, self.s_range, self.boost_true_positive_feedback, self.weighted_clauses, self.clause_drop_p, self.literal_drop_p)
+		self.set_state(state['mc_ctm_state'])
 
 	def __del__(self):
 		if self.mc_ctm != None:
@@ -237,6 +250,19 @@ class MultiClassTsetlinMachine():
 		else:
 			self.s_range = s
 
+	def __getstate__(self):
+		state = self.__dict__.copy()
+		state['mc_tm_state'] = self.get_state()
+		del state['mc_tm']
+		if 'encoded_X' in state:
+			del state['encoded_X']
+		return state
+
+	def __setstate__(self, state):
+		self.__dict__.update(state)
+		self.mc_tm = _lib.CreateMultiClassTsetlinMachine(self.number_of_classes, self.number_of_clauses, self.number_of_features, 1, self.number_of_ta_chunks, self.number_of_state_bits, self.T, self.s, self.s_range, self.boost_true_positive_feedback, self.weighted_clauses, self.clause_drop_p, self.literal_drop_p)
+		self.set_state(state['mc_tm_state'])
+
 	def __del__(self):
 		if self.mc_tm != None:
 			_lib.mc_tm_destroy(self.mc_tm)
@@ -347,6 +373,19 @@ class RegressionTsetlinMachine():
 			self.s_range = s_range
 		else:
 			self.s_range = s
+
+	def __getstate__(self):
+		state = self.__dict__.copy()
+		state['rtm_state'] = self.get_state()
+		del state['rtm']
+		if 'encoded_X' in state:
+			del state['encoded_X']
+		return state
+
+	def __setstate__(self, state):
+		self.__dict__.update(state)
+		self.rtm = _lib.CreateTsetlinMachine(self.number_of_clauses, self.number_of_features, 1, self.number_of_ta_chunks, self.number_of_state_bits, self.T, self.s, self.s_range, self.boost_true_positive_feedback, self.weighted_clauses)
+		self.set_state(state['rtm_state'])
 
 	def __del__(self):
 		if self.rtm != None:

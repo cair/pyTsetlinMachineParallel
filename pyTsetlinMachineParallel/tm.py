@@ -278,7 +278,7 @@ class MultiClassTsetlinMachine():
 
 		if self.mc_tm == None:
 			if self.append_negated:
-				self.number_of_features = X.shape[1]*32
+				self.number_of_features = X.shape[1]*32*2
 			else:
 				self.number_of_features = X.shape[1]*32
 
@@ -300,10 +300,12 @@ class MultiClassTsetlinMachine():
 		return
 
 	def predict(self, X):
+		X = X.astype(np.uint32)
+		
 		number_of_examples = X.shape[0]
 		
 		if self.append_negated:
-			X = np.concatenate((X, np.invert(Xm)), axis=1)
+			X = np.concatenate((X, np.invert(X)), axis=1)
 			
 		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
 		

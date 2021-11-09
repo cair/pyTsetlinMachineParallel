@@ -271,6 +271,7 @@ class MultiClassTsetlinMachine():
 			_lib.itm_destroy(self.itm)
 
 	def fit(self, X, Y, epochs=100, incremental=False):
+		X = X.astype(np.uint32)
 		number_of_examples = X.shape[0]
 
 		self.number_of_classes = int(np.max(Y) + 1)
@@ -287,13 +288,13 @@ class MultiClassTsetlinMachine():
 		elif incremental == False:
 			_lib.mc_tm_destroy(self.mc_tm)
 			self.mc_tm = _lib.CreateMultiClassTsetlinMachine(self.number_of_classes, self.number_of_clauses, self.number_of_features, 1, self.number_of_ta_chunks, self.number_of_state_bits, self.T, self.s, self.s_range, self.boost_true_positive_feedback, self.weighted_clauses)
-
+		
 		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
 		if self.append_negated:
 			Xm = np.concatenate((Xm, np.invert(Xm)), axis=1)
 			
 		Ym = np.ascontiguousarray(Y).astype(np.uint32)
-
+				
 		_lib.mc_tm_fit(self.mc_tm, Xm, Ym, number_of_examples, epochs)
 
 		return

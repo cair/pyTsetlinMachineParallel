@@ -289,9 +289,9 @@ class MultiClassTsetlinMachine():
 			_lib.mc_tm_destroy(self.mc_tm)
 			self.mc_tm = _lib.CreateMultiClassTsetlinMachine(self.number_of_classes, self.number_of_clauses, self.number_of_features, 1, self.number_of_ta_chunks, self.number_of_state_bits, self.T, self.s, self.s_range, self.boost_true_positive_feedback, self.weighted_clauses)
 		
-		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
 		if self.append_negated:
-			Xm = np.concatenate((Xm, np.invert(Xm)), axis=1)
+			X = np.concatenate((X, np.invert(X)), axis=1)
+		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
 			
 		Ym = np.ascontiguousarray(Y).astype(np.uint32)
 				
@@ -302,9 +302,11 @@ class MultiClassTsetlinMachine():
 	def predict(self, X):
 		number_of_examples = X.shape[0]
 		
-		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
 		if self.append_negated:
-			Xm = np.concatenate((Xm, np.invert(Xm)), axis=1)
+			X = np.concatenate((X, np.invert(Xm)), axis=1)
+			
+		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
+		
 		Y = np.ascontiguousarray(np.zeros(number_of_examples, dtype=np.uint32))
 
 		_lib.mc_tm_predict(self.mc_tm, Xm, Y, number_of_examples)

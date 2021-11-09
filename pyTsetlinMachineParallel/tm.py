@@ -277,9 +277,9 @@ class MultiClassTsetlinMachine():
 
 		if self.mc_tm == None:
 			if self.append_negated:
-				self.number_of_features = X.shape[1]*2
+				self.number_of_features = X.shape[1]*32
 			else:
-				self.number_of_features = X.shape[1]
+				self.number_of_features = X.shape[1]*32
 
 			self.number_of_patches = 1
 			self.number_of_ta_chunks = int((self.number_of_features-1)/32 + 1)
@@ -288,35 +288,25 @@ class MultiClassTsetlinMachine():
 			_lib.mc_tm_destroy(self.mc_tm)
 			self.mc_tm = _lib.CreateMultiClassTsetlinMachine(self.number_of_classes, self.number_of_clauses, self.number_of_features, 1, self.number_of_ta_chunks, self.number_of_state_bits, self.T, self.s, self.s_range, self.boost_true_positive_feedback, self.weighted_clauses)
 
-		self.encoded_X = np.ascontiguousarray(np.empty(int(number_of_examples * self.number_of_ta_chunks), dtype=np.uint32))
-
 		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
+		if self.append_negated:
+			Xm = np.concatenate((Xm, np.invert(Xm)), axis=1)
+			
 		Ym = np.ascontiguousarray(Y).astype(np.uint32)
 
-		if self.append_negated:
-			_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.number_of_features//2, 1, 1, self.number_of_features//2, 1, 1)
-		else:
-			_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.number_of_features, 1, 1, self.number_of_features, 1, 0)
-
-		_lib.mc_tm_fit(self.mc_tm, self.encoded_X, Ym, number_of_examples, epochs)
+		_lib.mc_tm_fit(self.mc_tm, Xm, Ym, number_of_examples, epochs)
 
 		return
 
 	def predict(self, X):
 		number_of_examples = X.shape[0]
 		
-		self.encoded_X = np.ascontiguousarray(np.empty(int(number_of_examples * self.number_of_patches * self.number_of_ta_chunks), dtype=np.uint32))
-
 		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
-
 		if self.append_negated:
-			_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.number_of_features//2, 1, 1, self.number_of_features//2, 1, 1)
-		else:
-			_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.number_of_features, 1, 1, self.number_of_features, 1, 0)
-	
+			Xm = np.concatenate((Xm, np.invert(Xm)), axis=1)
 		Y = np.ascontiguousarray(np.zeros(number_of_examples, dtype=np.uint32))
 
-		_lib.mc_tm_predict(self.mc_tm, self.encoded_X, Y, number_of_examples)
+		_lib.mc_tm_predict(self.mc_tm, Xm, Y, number_of_examples)
 
 		return Y
 	

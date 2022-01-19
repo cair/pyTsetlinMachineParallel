@@ -343,14 +343,16 @@ class MultiClassTsetlinMachine():
 		return
 
 	def transform(self, X, inverted=False):
-		X = X.astype(np.uint32)
-		
 		number_of_examples = X.shape[0]
 		
-		if self.append_negated:
-			X = np.concatenate((X, np.invert(X)), axis=1)
-			
+		self.encoded_X = np.ascontiguousarray(np.empty(int(number_of_examples * self.number_of_patches * self.number_of_ta_chunks), dtype=np.uint32))
+
 		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
+
+		if self.append_negated:
+			_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.number_of_features//2, 1, 1, self.number_of_features//2, 1, 1)
+		else:
+			_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.number_of_features, 1, 1, self.number_of_features, 1, 0)
 	
 		X_transformed = np.ascontiguousarray(np.empty(number_of_examples*self.number_of_classes*self.number_of_clauses, dtype=np.uint32))
 
